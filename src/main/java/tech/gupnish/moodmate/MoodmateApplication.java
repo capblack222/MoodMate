@@ -16,7 +16,7 @@ public class MoodmateApplication {
 
 	@GetMapping("/hello")
 	public String hello() {
-		return "Hello, welcome to Moodmate!";
+		return "<h1>Hello, welcome to Moodmate!</h1>";
 	}
 
 }
