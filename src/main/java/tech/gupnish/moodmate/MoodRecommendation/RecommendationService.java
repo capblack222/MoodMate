@@ -1,9 +1,10 @@
-package tech.gupnish.moodmate.MoodRecommendation;
+package tech.gupnish.moodmate.moodRecommendation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import tech.gupnish.moodmate.errors.MoodNotFoundException;
 
 @Service
 public class RecommendationService {
@@ -27,10 +28,18 @@ public class RecommendationService {
         return recommendations;
     }
 
-    public MoodRecommendation getParticularRecommendation(String moodType) {
-        return recommendations.stream()
-            .filter(mood -> mood.getMoodType().equalsIgnoreCase(moodType))
-            .findFirst()
-            .orElse(null);
+    public MoodRecommendation getParticularRecommendation(String moodType) throws MoodNotFoundException {
+        MoodRecommendation found = new MoodRecommendation();
+        if (moodType == null || moodType.isEmpty()) {
+            throw new IllegalArgumentException("Mood type cannot be null or empty");
+        }
+        if (recommendations.stream().anyMatch(mood -> mood.getMoodType().equalsIgnoreCase(moodType))) {
+            found = recommendations.stream()
+                .filter(mood -> mood.getMoodType().equalsIgnoreCase(moodType))
+                .findFirst()
+                .orElse(null);
+            return found;
+        }
+        throw new MoodNotFoundException("No recommendations found for the specified mood type: " + moodType);
     }
 }

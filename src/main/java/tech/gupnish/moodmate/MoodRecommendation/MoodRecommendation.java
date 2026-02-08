@@ -1,4 +1,4 @@
-package tech.gupnish.moodmate.MoodRecommendation;
+package tech.gupnish.moodmate.moodRecommendation;
 
 // @Entity
 public class MoodRecommendation {
@@ -23,6 +23,9 @@ public class MoodRecommendation {
         this.moodType = moodType;
         this.music = music;
         this.stuff_to_do = stuff_to_do;
+    }
+
+    public MoodRecommendation() {
     }
 
     // Getters and setters
