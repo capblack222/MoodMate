@@ -58,7 +58,8 @@ public class RecommendationService {
                 case "music" -> found.getMusic();
                 case "todo" -> found.getStuffToDo();
                 case "dining" -> found.getDining();
-                default -> throw new IllegalArgumentException("Invalid recommendation type: " + type);
+                default -> throw new IllegalArgumentException("Invalid recommendation type: " + type 
+                            + ". \nValid types are: \'music\' or \'todo\' or \'dining\' only.");
             };
             if(res == null || res.isEmpty()) {
                 throw new MoodNotFoundException("No " + type + " recommendation found for the specified type: " + type);
