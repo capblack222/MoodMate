@@ -43,4 +43,28 @@ public class RecommendationService {
         }
         throw new MoodNotFoundException("No recommendations found for the specified mood type: " + moodType);
     }
+
+    public String getParticularRecommendationForType(String mood, String type) throws MoodNotFoundException {
+        MoodRecommendation found = new MoodRecommendation();
+        if (mood == null || mood.isEmpty()) {
+            throw new IllegalArgumentException("Mood type cannot be null or empty");
+        }
+        if (recommendations.stream().anyMatch(moodType -> moodType.getMoodType().equalsIgnoreCase(mood))) {
+            found = recommendations.stream()
+                .filter(m -> m.getMoodType().equalsIgnoreCase(mood))
+                .findFirst()
+                .orElse(null);
+            String res = switch (type.toLowerCase()) {
+                case "music" -> found.getMusic();
+                case "todo" -> found.getStuffToDo();
+                case "dining" -> found.getDining();
+                default -> throw new IllegalArgumentException("Invalid recommendation type: " + type);
+            };
+            if(res == null || res.isEmpty()) {
+                throw new MoodNotFoundException("No " + type + " recommendation found for the specified type: " + type);
+            }
+            return "<h1>" + res + "</h1>";
+        }
+        throw new MoodNotFoundException("No recommendations found for the specified mood type: " + mood);
+    }
 }

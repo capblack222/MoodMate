@@ -1,0 +1,20 @@
+meta {
+  name: get a particular recommendation based on one mood
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8080/v1/api/recommendations?mood=Happy
+  body: none
+  auth: inherit
+}
+
+params:query {
+  mood: Happy
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

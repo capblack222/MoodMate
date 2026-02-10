@@ -2,6 +2,7 @@ package tech.gupnish.moodmate.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,13 +26,14 @@ public class RecommendationController {
         return recommendationService.getRecommendations();
     }
 
-    @GetMapping("/recommend")
+    @GetMapping("")
     public Object getOneRecommendation(@RequestParam("mood") String moodType) throws MoodNotFoundException {
-        // if(moodType == null || moodType.isEmpty()) {
-        //     throw new IllegalArgumentException("<h1>Mood type cannot be null or empty</h1>");
-        // } else if (recommendationService.getParticularRecommendation(moodType) == null) {
-        //     throw new IllegalArgumentException("<h1>No recommendations found for the specified mood type: " + moodType + "</h1>");
-        // }
         return recommendationService.getParticularRecommendation(moodType);
+    }
+
+    @GetMapping("/{type}")
+    public String getOneRecommendationByType(@PathVariable String type, @RequestParam("mood") String mood) 
+        throws MoodNotFoundException {
+        return recommendationService.getParticularRecommendationForType(mood, type);
     }
 }
