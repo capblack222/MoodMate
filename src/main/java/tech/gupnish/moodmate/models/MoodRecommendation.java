@@ -1,4 +1,4 @@
-package tech.gupnish.moodmate.moodRecommendation;
+package tech.gupnish.moodmate.models;
 
 // @Entity
 public class MoodRecommendation {

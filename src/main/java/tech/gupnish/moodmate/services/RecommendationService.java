@@ -1,10 +1,11 @@
-package tech.gupnish.moodmate.moodRecommendation;
+package tech.gupnish.moodmate.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import tech.gupnish.moodmate.errors.MoodNotFoundException;
+import tech.gupnish.moodmate.models.MoodRecommendation;
 
 @Service
 public class RecommendationService {

@@ -10,7 +10,6 @@ This project will evolve in **three structured phases**, moving from a simple AP
 #### 🔵 **Phase 1 — Core API (In-Memory Version)**  
 **Goal:** Build the basic backbone of MoodMate without any database.  
 **Focus Areas:**  
-- Create Mood enum (Happy, Sad, Stressed, etc.)  
 - Create Recommendation model (song, quote, activity, movie)  
 - Store data in ArrayLists (temporary)  
 - Build `/recommend?mood=` endpoint  
